@@ -2,11 +2,11 @@
 
 ## Author: Jason Quaglia
 
-- [Link to Heroku Deployment](https://basic-api-server-jquaglia.herokuapp.com/)
+- [Link to Heroku Deployment](https://basic-auth-jquaglia.herokuapp.com/)
 
-- [Link to Github Actions Tab](https://github.com/jquaglia/basic-api-server/actions)
+- [Link to Github Actions Tab](https://github.com/jquaglia/basic-auth/actions)
 
-- [Link to PR on Github](https://github.com/jquaglia/basic-api-server/pull/2)
+- [Link to PR on Github](https://github.com/jquaglia/basic-auth/pull/2)
 
 ## Collaborators
 
