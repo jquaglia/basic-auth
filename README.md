@@ -16,7 +16,7 @@
 
 - Nick Magruder
 
-- Seid
+- Seid 
 
 ## The Setup
 
