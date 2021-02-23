@@ -27,7 +27,7 @@ async function createSignUp(req, res, next) {
 
 async function createSignIn(req, res, next) {
   console.log(req.user);
-  res.send('dummy');
+  res.status(200).json({user: req.user});
   // let basicHeaderParts = req.headers.authorization.split(' ');  // ['Basic', 'sdkjdsljd=']
   // let encodedString = basicHeaderParts.pop();  // sdkjdsljd=
   // let decodedString = base64.decode(encodedString); // "username:password"

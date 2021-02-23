@@ -14,18 +14,22 @@ async function headers(req, res, next) {
   let [username, password] = decodedString.split(':'); // username, password
 
   try {
-    usersModel.auth(username, password, next, req);
+    const validUser = await usersModel.auth(username, password);
     // const user = await usersModel.findOne({ username: username });
     // const valid = await bcrypt.compare(password, user.password);
-    // if (valid) {
-    //   req.user = user;
-    //   next();
-    //   // res.status(200).json(user);
-    // }
-    // else {
-    //   throw new Error('Invalid User');
-    // }
-  } catch (error) { res.status(403).send('Invalid Login'); }
+    if (validUser) {
+      req.user = validUser;
+      next();
+      // res.status(200).json(user);
+    }
+    else {
+      // throw new Error('Invalid User');
+      next('Invalid User');
+    }
+  } catch (error) {
+    // res.status(403).send('Invalid Login'); 
+    next('Invalid Login');
+  }
 }
 
 
