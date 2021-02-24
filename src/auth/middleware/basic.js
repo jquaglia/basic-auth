@@ -1,32 +1,28 @@
 'use strict';
 
-// const bcrypt = require('bcrypt');
 const base64 = require('base-64');
+const User = require('../models/users.js');
 
-const usersModel = require('../models/users-model.js');
-// const Users = new usersModel(usersModel.usersModel);
+module.exports = async (req, res, next) => {
 
+  if (!req.headers.authorization) { next('Invalid Login'); }
 
-async function headers(req, res, next) {
-  let basicHeaderParts = req.headers.authorization.split(' ');  // ['Basic', 'sdkjdsljd=']
-  let encodedString = basicHeaderParts.pop();  // sdkjdsljd=
-  let decodedString = base64.decode(encodedString); // "username:password"
-  let [username, password] = decodedString.split(':'); // username, password
+  let basic = req.headers.authorization.split(' ');
+  let encodedString = basic.pop();
+  let decodedString = base64.decode(encodedString);
+  let [user, pass] = decodedString.split(':');
 
   try {
-    usersModel.auth(username, password, next, req);
-    // const user = await usersModel.findOne({ username: username });
-    // const valid = await bcrypt.compare(password, user.password);
-    // if (valid) {
-    //   req.user = user;
-    //   next();
-    //   // res.status(200).json(user);
-    // }
-    // else {
-    //   throw new Error('Invalid User');
-    // }
-  } catch (error) { res.status(403).send('Invalid Login'); }
-}
+    const validUser = await User.authenticateBasic(user, pass);
+    if (validUser) {
+      req.user = validUser;
+      next();
+    } else {
+      next('Invalid User');
+    }
+  } catch (e) {
+    res.status(403).send('Invalid Login');
+  }
 
+};
 
-module.exports = headers;
