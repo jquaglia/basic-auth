@@ -23,11 +23,6 @@ usersSchema.pre('save', function (next) {
   });
 });
 
-// usersSchema.pre('save', async function () {
-//   if (this.isModified('password')) {
-//     this.password = await bcrypt.hash(this.password, 5);
-//   }
-// });
 
 usersSchema.statics.auth = async function (username, password) {
   // console.log(this);
@@ -39,14 +34,7 @@ usersSchema.statics.auth = async function (username, password) {
   } else {
     throw new Error('User Validation Error');
   }
-  // if (valid) {
-  //   req.user = user;
-  //   next();
-  //   // res.status(200).json(user);
-  // }
-  // else {
-  //   next('Invalid User');
-  // }
+
 };
 
 usersSchema.validate = function () {
