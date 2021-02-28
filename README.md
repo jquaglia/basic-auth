@@ -26,7 +26,7 @@
 
 1. Run the command `npm install`
 
-1. Create a `.env` file with `PORT` and `DATABASE_URI` variable
+1. Create a `.env` file with `PORT` and `MONGODB_URI` variable
 
 ### Testing the Server
 

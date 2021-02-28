@@ -13,6 +13,7 @@ async function headers(req, res, next) {
   let decodedString = base64.decode(encodedString); // "username:password"
   let [username, password] = decodedString.split(':'); // username, password
 
+  console.log('FISH', username, password);
   try {
     const validUser = await usersModel.auth(username, password);
     // const user = await usersModel.findOne({ username: username });
